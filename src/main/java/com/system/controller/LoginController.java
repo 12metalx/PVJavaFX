@@ -4,12 +4,11 @@ import com.system.model.dao.UsuarioDAO;
 import com.system.model.dto.UsuarioDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+
+import javafx.scene.control.*;
 import javafx.fxml.FXML;
 
 public class LoginController implements Initializable {
@@ -31,6 +30,11 @@ public class LoginController implements Initializable {
         UsuarioDAO dao = new UsuarioDAO();
         dto.getEntidad().setUserName(txtUser.getText());
         dto.getEntidad().setPass(txtPass.getText());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confitmation");
+        alert.setContentText("Todo ok :)");
+        Optional<ButtonType> action = alert.showAndWait();
         dto = dao.search(dto);
         if(dto != null){
             System.out.println("Todo ok :)");
