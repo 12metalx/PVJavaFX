@@ -18,9 +18,15 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.geometry.Rectangle2D;
+
 
 public class LoginController implements Initializable {
+    private static final Rectangle2D SCREEN_BOUNDS= Screen.getPrimary()
+            .getVisualBounds();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -58,10 +64,13 @@ public class LoginController implements Initializable {
         BorderPane borderPane = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(borderPane));
-        stage.setMaximized(true);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setWidth(SCREEN_BOUNDS.getWidth());
+        stage.setHeight(SCREEN_BOUNDS.getHeight());
         stage.setMinWidth(1280);
         stage.setMinHeight(720);
         com.system.util.Methods.closeEffect(this.root);
+
         stage.show();
 
 
